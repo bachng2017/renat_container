@@ -1,19 +1,19 @@
 # base information
-FROM centos:8
+FROM centos:7
 LABEL maintainer="bachng@gmail.com"
 
 # adjust yum to support all locale
 RUN sed -i 's/\(override_install_langs.*\)/# \1/g' /etc/yum.conf
 
 # parameters
+ARG NTP_SERVER=10.128.3.103
 ARG RENAT_PASS=password!secret
-# ARG NTP_SERVER=10.128.3.103
-# ARG HTTP_PROXY=http://10.128.3.103:4713
-# ARG HTTPS_PROXY=http://10.128.3.103:4713
+ARG HTTP_PROXY=http://10.128.3.103:4713
+ARG HTTPS_PROXY=http://10.128.3.103:4713
 
 
 # setting environment
-# ENV http_proxy="$HTTP_PROXY" https_proxy="$HTTPS_PROXY"
+ENV http_proxy="$HTTP_PROXY" https_proxy="$HTTPS_PROXY"
 ENV HOME=/home/robot
 ENV RENAT_PATH=$HOME/work/renat
 RUN echo "LANG=en_US.utf-8" >> /etc/environment && \
@@ -22,8 +22,7 @@ echo "LC_ALL=en_US.utf-8" >> /etc/environment
 # install packages
 ### update yum and install dev package
 RUN yum update -y && \
-yum -y groupinstall "Development Tools" && \
-yum -y install epel-release
+yum -y groupinstall "Development Tools"
 
 ### install Python 3.x env
 RUN yum clean all && rm -rf /var/cache/yum/*
@@ -36,7 +35,7 @@ pip3.6 install --upgrade pip
 ADD files/etc/yum.repos.d /etc/yum.repos.d/
 
 ### add neccesary packages by yum
-RUN yum install -y numpy net-snmp net-snmp-devel net-snmp-utils czmq czmq-devel python36u-tkinter xorg-x11-server-Xvfb  vim httpd xorg-x11-fonts-75dpi  nfs samba4 samba-client samba-winbind cifs-utils tcpdump hping3 telnet nmap wireshark java-1.8.0-openjdk firefox telnet ld-linux.so.2 ghostscript ImageMagick vlgothic-fonts vlgothic-p-fonts chrony openssl sudo openssh-server sshpass filebeat rsyslog wkhtmltopdf
+RUN yum install -y numpy net-snmp net-snmp-devel net-snmp-utils czmq czmq-devel python36u-tkinter xorg-x11-server-Xvfb  vim httpd xorg-x11-fonts-75dpi  nfs samba4 samba-client samba-winbind cifs-utils tcpdump hping3 telnet nmap wireshark java-1.8.0-openjdk firefox telnet ld-linux.so.2 ghostscript ImageMagick vlgothic-fonts vlgothic-p-fonts ntp openssl sudo openssh-server sshpass filebeat rsyslog wkhtmltopdf
 ADD files/requirements.txt /tmp/
 RUN pip3.6 install -r /tmp/requirements.txt
 
@@ -89,7 +88,7 @@ systemctl enable httpd
 ### other setting 
 RUN \
 systemctl enable filebeat && \
-systemctl enable chronyd 
+systemctl enable ntpd 
 ADD files/etc/ /etc/
 
 RUN \

@@ -57,8 +57,7 @@ jobs:
             push: true
             load: false
             tags: |
-                ghcr.io/bachng2017/renat:latest
-                # bachng/renat_base7:latest
+                ghcr.io/bachng2017/renat_container:latest
             cache-from: type=local,src=/tmp/.buildx-cache
             cache-to: mode=max,type=local,dest=/tmp/.buildx-cache
 

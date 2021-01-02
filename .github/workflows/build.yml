@@ -47,7 +47,6 @@ jobs:
         uses: docker/build-push-action@v2
         with:
             push: true
-            load: false
             tags: |
                 ghcr.io/bachng2017/renat_container:latest
 

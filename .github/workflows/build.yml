@@ -6,7 +6,7 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
-  build-and-test:
+  build-and-push:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
@@ -17,8 +17,6 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - name: Checkout
         uses: actions/checkout@v2
-        with:
-            fetch-depth: 0
 
       - name: Checkout RENAT src
         uses: actions/checkout@v2
@@ -26,6 +24,10 @@ jobs:
             repository: bachng2017/RENAT
             path: renat_project
 
+      - name: Get timestamp
+        run: |
+            echo ::set-output name=value::$(date "+%Y%m%d_%H%M%S")
+            
       -
         name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
@@ -49,5 +51,6 @@ jobs:
             context: .
             push: true
             tags: |
+                ghcr.io/bachng2017/renat_container:${{ steps.timestamp.outputs.value }}
                 ghcr.io/bachng2017/renat_container:latest
 

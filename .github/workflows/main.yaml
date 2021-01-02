@@ -69,8 +69,8 @@ jobs:
             context: renat
             file: renat/Dockerfile
             tags: ghcr.io/bachng2017/renat_base7:latest
-            cache-from: type=local,src=/tmp/.buildx-cache
-            cache-to: mode=max,type=local,dest=/tmp/.buildx-cache
+            # cache-from: type=local,src=/tmp/.buildx-cache
+            # cache-to: mode=max,type=local,dest=/tmp/.buildx-cache
 
       - name: Run Tests
         run: docker-compose up --exit-code-from test_renat
@@ -87,7 +87,7 @@ jobs:
                 ghcr.io/bachng2017/renat_container:latest
                 bachng/renat:${{ steps.time_stamp.outputs.value }}
                 bachng/renat:latest
-            cache-from: type=local,src=/tmp/.buildx-cache
-            cache-to: mode=max,type=local,dest=/tmp/.buildx-cache
+            # cache-from: type=local,src=/tmp/.buildx-cache
+            # cache-to: mode=max,type=local,dest=/tmp/.buildx-cache
 
 

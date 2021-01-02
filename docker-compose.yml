@@ -32,9 +32,9 @@ services:
         depends_on:
             - "router1"
             - "router2"
-        build:
-            context: renat 
-        # image: ghcr.io/bachng2017/renat_base7:latest
+        # build:
+        #    context: renat 
+        image: ghcr.io/bachng2017/renat_base7:latest
         volumes:
             - ./renat/config:/home/robot/work/renat/config
             - ./renat/test_renat:/home/robot/work/test_renat

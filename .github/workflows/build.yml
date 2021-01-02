@@ -49,6 +49,6 @@ jobs:
             context: .
             push: true
             tags: |
-                ghcr.io/bachng2017/renat_container:${TIME_STAMP}
+                ghcr.io/bachng2017/renat_container:${{ env.TIME_STAMP }}
                 ghcr.io/bachng2017/renat_container:latest
 

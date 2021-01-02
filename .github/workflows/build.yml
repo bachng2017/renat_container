@@ -54,4 +54,6 @@ jobs:
             tags: |
                 ghcr.io/bachng2017/renat_container:${{ steps.time_stamp.outputs.value }}
                 ghcr.io/bachng2017/renat_container:latest
+                bachng/renat:${{ steps.time_stamp.outputs.value }}
+                bachng/renat:latest
 

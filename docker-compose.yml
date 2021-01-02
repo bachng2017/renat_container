@@ -41,7 +41,7 @@ services:
             - ./renat/test_shell:/home/robot/work/test_shell
             - ./run_test.sh:/run_test.sh
         privileged: true
-        command: /run_test.sh
+        entrypoint: /run_test.sh
 
 
          

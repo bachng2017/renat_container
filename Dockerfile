@@ -7,7 +7,7 @@ ADD renat_project/ /home/robot/work/renat/
 
 # startup cmds
 USER root
-COPY files/tmp/entry.sh /tmp
-ENTRYPOINT ["/tmp/entry.sh"]
+COPY entry.sh /entry.sh
+ENTRYPOINT ["/entry.sh"]
 
 

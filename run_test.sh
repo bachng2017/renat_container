@@ -32,6 +32,7 @@ echo "+--------------------------------+"
 echo "+ run all RENAT test cases       +"
 echo "+--------------------------------+"
 cd $HOME/work/test_renat
+echo "update projects"
 $RENAT_PATH/tools/update.sh
 ./run.sh
 CODE=$(expr $RETURN + $?)

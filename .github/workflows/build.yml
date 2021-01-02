@@ -23,9 +23,11 @@ jobs:
         with:
             repository: bachng2017/RENAT
             path: renat_project
-        env:
-            TIME_STAMP: $(date "+%Y%m%d_%H%M%S")
 
+      # Becase yaml is not evaluted in the context of a shell a temporary step is used
+      - name: Set timestamp
+        run: |
+            echo ::set-env name=TIME_STAMP::$(date "+%Y%m%d_%H%M%S")
       -
         name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1

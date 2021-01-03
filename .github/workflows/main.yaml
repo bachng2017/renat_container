@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: main CI flow
+name: Build RENAT container
 
 # Controls when the action will run. Triggers the workflow on push or pull request
 # events but only for the master branch
@@ -55,36 +55,13 @@ jobs:
           username: bachng
           password: ${{ secrets.DOCKER_PASSWORD }}
 
-#      -
-#        name: Cache Docker layers
-#        uses: actions/cache@v2
-#        with:
-#          path: /tmp/.buildx-cache
-#          key: ${{ runner.os }}-buildx-${{ github.sha }}
-#          restore-keys: |
-#            ${{ runner.os }}-buildx-
-
-      - name: Build and Load
-        uses: docker/build-push-action@v2
-        with:
-            push: false
-            load: true
-            context: renat
-            file: renat/Dockerfile
-            tags: ghcr.io/bachng2017/renat_base7:latest
-            # cache-from: type=local,src=/tmp/.buildx-cache
-            # cache-to: mode=max,type=local,dest=/tmp/.buildx-cache
-
-      - name: Run Tests
-        run: docker-compose up --exit-code-from test_renat
-
       - name: Build and Push 
         uses: docker/build-push-action@v2
         with:
             push: true
             load: false
-            context: renat
-            file: renat/Dockerfile
+            context: .
+            file: Dockerfile
             tags: |
                 ghcr.io/bachng2017/renat_container:${{ steps.time_stamp.outputs.value }}
                 ghcr.io/bachng2017/renat_container:latest

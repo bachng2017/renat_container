@@ -1,8 +1,0 @@
-# -*- coding: utf-8 -*-
-
-auth:
-    plain-text: 
-        default:
-            user: zebra
-            pass: zebra
-            secret: zebra

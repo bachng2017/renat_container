@@ -73,4 +73,4 @@ jobs:
 
       - name: Post message to slack
         run: |
-            curl -X POST -H 'Content-type: application/json' --data '{"text":"A new RENAT container has been uploaded. Pls, check https://hub.docker.com/r/bachng/renat"}' ${RENAT_SLACK_WEBHOOK1}
+            curl -X POST -H 'Content-type: application/json' --data '{"text":"A new RENAT container has been uploaded. Pls, check https://hub.docker.com/r/bachng/renat"}' "${RENAT_SLACK_WEBHOOK1}"

@@ -2,13 +2,13 @@ A container for RENAT server. Check https://github.com/bachng2017/RENAT for more
 
 A super simple way to try RENAT is running it from a container. Below are instructions.
 
-1. import docker image from dockerhub
+1. Import docker image from dockerhub
 
     ```
     $ docker pull bachng/renat:latest
     ```
 
-2. prepare local user and data folder (optional)
+2. Prepare local user and data folder (optional)
     By default, RENAT will create a default user with UID/GID as 5000:5000. To match the uid/gid and also make configuration and created scenario persistent, prepare those steps.
  
     ```
@@ -23,7 +23,7 @@ A super simple way to try RENAT is running it from a container. Below are instru
     ```
     Folder `config` will be mapped to the `$RENAT_PATH/config` folder and folder `scenario` will be mapped to `~robot/work/scenario` on the container. If mapping was set correctly, modified configuration and created scenario will remain even after the container is stopped or initialized again.
 
-2. start the container that opens port 80 and 10022
+2. Start the container that opens port 80 and 10022
 
     ```
     $ docker run -td --privileged --rm \
@@ -41,12 +41,12 @@ A super simple way to try RENAT is running it from a container. Below are instru
 
     At this point, a RENAT server will all necessary packages and latest RENAT is ready with predefined `robot` user.
 
-3. login to the container as `robot` user
+3. Login to the container as `robot` user
 
     ```
     $ docker exec -it --user robot renat /bin/bash --login
     ```
-4. create a test scenario
+4. Create a test scenario
 
     ```
     [robot@afeb42da1974 renat]$ cd scenario
@@ -56,7 +56,7 @@ A super simple way to try RENAT is running it from a container. Below are instru
     ```
 
     A `do nothing` scenario is made. Check test01/main.robot for more details
-5. run and check the result
+5. Run and check the result
 
     ```
     [robot@afeb42da1974 renat]$ cd test01

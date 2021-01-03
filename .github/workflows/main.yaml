@@ -71,6 +71,6 @@ jobs:
             # cache-from: type=local,src=/tmp/.buildx-cache
             # cache-to: mode=max,type=local,dest=/tmp/.buildx-cache
 
-       - name: Post message to slack
-          run: |
+      - name: Post message to slack
+        run: |
             curl -X POST -H 'Content-type: application/json' --data '{"text":"A new RENAT container has been uploaded. Pls, check https://hub.docker.com/r/bachng/renat"}' ${RENAT_SLACK_WEBHOOK1}

@@ -17,9 +17,9 @@ jobs:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
-    env:
-        GITHUB_WORKSPACE: ${{ github.workspace }}
-        RENAT_SLACK_WEBHOOK1: ${{ secrets.RENAT_SLACK_WEBHOOK1 }}
+#    env:
+#        GITHUB_WORKSPACE: ${{ github.workspace }}
+#        RENAT_SLACK_WEBHOOK1: ${{ secrets.RENAT_SLACK_WEBHOOK1 }}
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -72,5 +72,7 @@ jobs:
             # cache-to: mode=max,type=local,dest=/tmp/.buildx-cache
 
       - name: Post message to slack
+        env:
+            RENAT_SLACK_WEBHOOK1: ${{ secrets.RENAT_SLACK_WEBHOOK1 }}
         run: |
             curl -X POST -H 'Content-type: application/json' --data '{"text":"A new RENAT container has been uploaded. Pls, check https://hub.docker.com/r/bachng/renat"}' "${RENAT_SLACK_WEBHOOK1}"

@@ -37,7 +37,7 @@ jobs:
         uses: actions/checkout@v2
         with:
             repository: bachng2017/RENAT
-            path: renat/renat_project
+            path: renat_project
       -
         name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1

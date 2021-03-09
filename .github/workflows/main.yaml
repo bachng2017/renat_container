@@ -59,7 +59,7 @@ jobs:
       - name: Change config foler from symbolic to ordinary folder
         run: |
             unlink renat_project/config
-            cp -pr renat_project/misc/config.sample  renatz_project/config
+            cp -pr renat_project/misc/config.sample  renat_project/config
 
       - name: Build and Push 
         uses: docker/build-push-action@v2
